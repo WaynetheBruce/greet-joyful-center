@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { db } from "@/lib/supabaseHelpers";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Facebook,
   Instagram,
@@ -57,21 +57,21 @@ export const ContactModal = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data: socialData } = await db
-        .from("settings")
+      const { data: socialData } = await (supabase
+        .from("settings" as any)
         .select("value")
         .eq("key", "social_links")
-        .maybeSingle();
+        .maybeSingle() as any);
 
       if (socialData?.value) {
         setSocialLinks(socialData.value as unknown as SocialLinksConfig);
       }
 
-      const { data: footerData } = await db
-        .from("settings")
+      const { data: footerData } = await (supabase
+        .from("settings" as any)
         .select("value")
         .eq("key", "footer_content")
-        .maybeSingle();
+        .maybeSingle() as any);
 
       if (footerData?.value) {
         const content = footerData.value as unknown as FooterContent;

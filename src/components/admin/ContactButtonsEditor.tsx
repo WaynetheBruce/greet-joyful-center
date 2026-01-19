@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { db } from "@/lib/supabaseHelpers";
+import { supabase } from "@/integrations/supabase/client";
 import { Plus, Trash2, Save, Phone, MessageCircle } from "lucide-react";
 
 export interface ContactButton {
@@ -23,11 +23,11 @@ export const ContactButtonsEditor = () => {
   }, []);
 
   const fetchContacts = async () => {
-    const { data } = await db
-      .from("settings")
+    const { data } = await (supabase
+      .from("settings" as any)
       .select("value")
       .eq("key", "contact_buttons")
-      .maybeSingle();
+      .maybeSingle() as any);
 
     if (data) {
       const value = data.value as unknown as { contacts: ContactButton[] };
@@ -70,25 +70,25 @@ export const ContactButtonsEditor = () => {
   const saveContacts = async () => {
     setSaving(true);
 
-    const { data: existing } = await db
-      .from("settings")
+    const { data: existing } = await (supabase
+      .from("settings" as any)
       .select("id")
       .eq("key", "contact_buttons")
-      .maybeSingle();
+      .maybeSingle() as any);
 
     const jsonValue = JSON.parse(JSON.stringify({ contacts }));
 
     let error;
     if (existing) {
-      const result = await db
-        .from("settings")
+      const result = await (supabase
+        .from("settings" as any)
         .update({ value: jsonValue })
-        .eq("key", "contact_buttons");
+        .eq("key", "contact_buttons") as any);
       error = result.error;
     } else {
-      const result = await db
-        .from("settings")
-        .insert([{ key: "contact_buttons", value: jsonValue }]);
+      const result = await (supabase
+        .from("settings" as any)
+        .insert([{ key: "contact_buttons", value: jsonValue }]) as any);
       error = result.error;
     }
 

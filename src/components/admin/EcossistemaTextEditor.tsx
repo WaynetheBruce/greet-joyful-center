@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { db } from "@/lib/supabaseHelpers";
+import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Save } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,11 +21,11 @@ export const EcossistemaTextEditor = () => {
   }, []);
 
   const fetchSettings = async () => {
-    const { data } = await db
-      .from("settings")
+    const { data } = await (supabase
+      .from("settings" as any)
       .select("value")
       .eq("key", "ecossistema_text")
-      .maybeSingle();
+      .maybeSingle() as any);
 
     if (data) {
       const settings = data.value as { title?: string; subtitle?: string };
@@ -40,23 +40,23 @@ export const EcossistemaTextEditor = () => {
 
     const settingsValue = { title, subtitle };
 
-    const { data: existing } = await db
-      .from("settings")
+    const { data: existing } = await (supabase
+      .from("settings" as any)
       .select("id")
       .eq("key", "ecossistema_text")
-      .maybeSingle();
+      .maybeSingle() as any);
 
     let error;
     if (existing) {
-      const result = await db
-        .from("settings")
+      const result = await (supabase
+        .from("settings" as any)
         .update({ value: settingsValue })
-        .eq("key", "ecossistema_text");
+        .eq("key", "ecossistema_text") as any);
       error = result.error;
     } else {
-      const result = await db
-        .from("settings")
-        .insert({ key: "ecossistema_text", value: settingsValue });
+      const result = await (supabase
+        .from("settings" as any)
+        .insert({ key: "ecossistema_text", value: settingsValue }) as any);
       error = result.error;
     }
 

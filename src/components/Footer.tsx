@@ -16,7 +16,7 @@ import {
   X
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { db } from "@/lib/supabaseHelpers";
+import { supabase } from "@/integrations/supabase/client";
 import portobelloLogo from "@/assets/portobello-logo-new.png";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useAutoTranslate } from "@/hooks/useAutoTranslate";
@@ -73,22 +73,22 @@ export function Footer() {
   useEffect(() => {
     const fetchSettings = async () => {
       // Fetch social links
-      const { data: socialData } = await db
-        .from("settings")
+      const { data: socialData } = await (supabase
+        .from("settings" as any)
         .select("value")
         .eq("key", "social_links")
-        .maybeSingle();
+        .maybeSingle() as any);
       
       if (socialData) {
         setSocialLinks(socialData.value as unknown as SocialLinksConfig);
       }
 
       // Fetch footer content
-      const { data: footerData } = await db
-        .from("settings")
+      const { data: footerData } = await (supabase
+        .from("settings" as any)
         .select("value")
         .eq("key", "footer_content")
-        .maybeSingle();
+        .maybeSingle() as any);
       
       if (footerData) {
         const content = footerData.value as unknown as FooterContent;
@@ -316,11 +316,11 @@ export function SocialLinksDisplay() {
 
   useEffect(() => {
     const fetchSocialLinks = async () => {
-      const { data } = await db
-        .from("settings")
+      const { data } = await (supabase
+        .from("settings" as any)
         .select("value")
         .eq("key", "social_links")
-        .maybeSingle();
+        .maybeSingle() as any);
       
       if (data) {
         setSocialLinks(data.value as unknown as SocialLinksConfig);
