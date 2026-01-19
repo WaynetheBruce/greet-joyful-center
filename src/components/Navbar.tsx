@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Menu, X, Lightbulb, Rocket, FolderOpen, ChevronDown, Settings, ArrowLeft, Sparkles } from "lucide-react";
-import portobelloLogo from "@/assets/portobello-logo.png";
+import portobelloLogo from "@/assets/portobello-logo-new.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/hooks/useLanguage";

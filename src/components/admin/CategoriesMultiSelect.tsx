@@ -233,7 +233,8 @@ export const CategoriesMultiSelect = ({
 
 export const getCategoryLabel = (value: string): string => {
   const cat = DEFAULT_CATEGORY_OPTIONS.find(c => c.value === value);
-  return cat?.label || value;
+  // Se não encontrar label, substitui underscores por espaços
+  return cat?.label || value.replace(/_/g, ' ');
 };
 
 export const CATEGORIES = DEFAULT_CATEGORY_OPTIONS;
