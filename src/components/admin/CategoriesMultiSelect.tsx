@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, X, Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useProjectOptions, useAddProjectOption, useRemoveProjectOption, type OptionItem } from "@/hooks/useProjectOptions";
-import { supabase } from "@/integrations/supabase/client";
+import { db as supabase } from "@/lib/supabaseHelpers";
 import { toast } from "sonner";
 
 // Fallback options when database is loading or empty

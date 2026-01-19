@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/supabaseHelpers";
 import { Plus, Trash2, Save, Phone, MessageCircle } from "lucide-react";
 
 export interface ContactButton {
@@ -23,7 +23,7 @@ export const ContactButtonsEditor = () => {
   }, []);
 
   const fetchContacts = async () => {
-    const { data } = await supabase
+    const { data } = await db
       .from("settings")
       .select("value")
       .eq("key", "contact_buttons")
@@ -70,7 +70,7 @@ export const ContactButtonsEditor = () => {
   const saveContacts = async () => {
     setSaving(true);
 
-    const { data: existing } = await supabase
+    const { data: existing } = await db
       .from("settings")
       .select("id")
       .eq("key", "contact_buttons")
@@ -80,13 +80,13 @@ export const ContactButtonsEditor = () => {
 
     let error;
     if (existing) {
-      const result = await supabase
+      const result = await db
         .from("settings")
         .update({ value: jsonValue })
         .eq("key", "contact_buttons");
       error = result.error;
     } else {
-      const result = await supabase
+      const result = await db
         .from("settings")
         .insert([{ key: "contact_buttons", value: jsonValue }]);
       error = result.error;
