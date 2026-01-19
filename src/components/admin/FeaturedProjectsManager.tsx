@@ -27,7 +27,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Star, Eye, GripVertical, Loader2, Save, Lightbulb, Rocket } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { supabase } from "@/integrations/supabase/client";
+import { db as supabase } from "@/lib/supabaseHelpers";
 import { translationManager } from "@/lib/translationManager";
 import { useToast } from "@/hooks/use-toast";
 

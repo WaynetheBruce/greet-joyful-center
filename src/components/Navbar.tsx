@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Menu, X, Lightbulb, Rocket, FolderOpen, ChevronDown, Settings, ArrowLeft, Sparkles } from "lucide-react";
 import portobelloLogo from "@/assets/portobello-logo-new.png";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/supabaseHelpers";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage } from "@/hooks/useLanguage";
 import { LanguageSelector } from "@/components/LanguageSelector";
@@ -48,7 +48,7 @@ export function Navbar({ showNav = true, currentPage, rightContent }: NavbarProp
     const fetchSectionTitles = async () => {
       const titles: Record<string, string> = {};
 
-      const { data: ecossistemaData } = await supabase
+      const { data: ecossistemaData } = await db
         .from("settings")
         .select("value")
         .eq("key", "ecossistema_text")
@@ -59,7 +59,7 @@ export function Navbar({ showNav = true, currentPage, rightContent }: NavbarProp
         if (settings.title) titles["porto-de-ideias"] = settings.title;
       }
 
-      const { data: servicosData } = await supabase
+      const { data: servicosData } = await db
         .from("settings")
         .select("value")
         .eq("key", "nossos_servicos_content")

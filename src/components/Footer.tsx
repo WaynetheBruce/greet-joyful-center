@@ -16,7 +16,7 @@ import {
   X
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/supabaseHelpers";
 import portobelloLogo from "@/assets/portobello-logo-new.png";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useAutoTranslate } from "@/hooks/useAutoTranslate";
@@ -73,7 +73,7 @@ export function Footer() {
   useEffect(() => {
     const fetchSettings = async () => {
       // Fetch social links
-      const { data: socialData } = await supabase
+      const { data: socialData } = await db
         .from("settings")
         .select("value")
         .eq("key", "social_links")
@@ -84,7 +84,7 @@ export function Footer() {
       }
 
       // Fetch footer content
-      const { data: footerData } = await supabase
+      const { data: footerData } = await db
         .from("settings")
         .select("value")
         .eq("key", "footer_content")
@@ -316,7 +316,7 @@ export function SocialLinksDisplay() {
 
   useEffect(() => {
     const fetchSocialLinks = async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from("settings")
         .select("value")
         .eq("key", "social_links")
