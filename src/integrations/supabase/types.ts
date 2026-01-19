@@ -14,7 +14,280 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contrapartidas: {
+        Row: {
+          ativo: boolean | null
+          beneficios: string[] | null
+          created_at: string | null
+          id: string
+          indice: string | null
+          ordem: number | null
+          project_id: string | null
+          titulo: string
+          updated_at: string | null
+          valor: string | null
+        }
+        Insert: {
+          ativo?: boolean | null
+          beneficios?: string[] | null
+          created_at?: string | null
+          id?: string
+          indice?: string | null
+          ordem?: number | null
+          project_id?: string | null
+          titulo: string
+          updated_at?: string | null
+          valor?: string | null
+        }
+        Update: {
+          ativo?: boolean | null
+          beneficios?: string[] | null
+          created_at?: string | null
+          id?: string
+          indice?: string | null
+          ordem?: number | null
+          project_id?: string | null
+          titulo?: string
+          updated_at?: string | null
+          valor?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contrapartidas_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      project_members: {
+        Row: {
+          created_at: string | null
+          detalhes: string | null
+          funcao: string | null
+          id: string
+          nome: string
+          order_index: number | null
+          photo_url: string | null
+          project_id: string | null
+          social_links: Json | null
+        }
+        Insert: {
+          created_at?: string | null
+          detalhes?: string | null
+          funcao?: string | null
+          id?: string
+          nome: string
+          order_index?: number | null
+          photo_url?: string | null
+          project_id?: string | null
+          social_links?: Json | null
+        }
+        Update: {
+          created_at?: string | null
+          detalhes?: string | null
+          funcao?: string | null
+          id?: string
+          nome?: string
+          order_index?: number | null
+          photo_url?: string | null
+          project_id?: string | null
+          social_links?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_members_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          awards: string[] | null
+          card_image_url: string | null
+          categorias_tags: string[] | null
+          created_at: string | null
+          description: string | null
+          diferenciais: string | null
+          featured_on_homepage: boolean | null
+          festivals_exhibitions: Json | null
+          has_incentive_law: boolean | null
+          hero_image_url: string | null
+          id: string
+          image_url: string | null
+          impacto_cultural: string | null
+          impacto_social: string | null
+          incentive_law_details: string | null
+          is_hidden: boolean | null
+          link_video: string | null
+          location: string | null
+          news: Json | null
+          order_index: number | null
+          presentation_document_url: string | null
+          project_type: string | null
+          publico_alvo: string | null
+          responsavel_email: string | null
+          responsavel_nome: string | null
+          responsavel_telefone: string | null
+          show_on_captacao: boolean | null
+          show_on_portfolio: boolean | null
+          stage: string | null
+          stages: string[] | null
+          status: string | null
+          synopsis: string | null
+          title: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          awards?: string[] | null
+          card_image_url?: string | null
+          categorias_tags?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          diferenciais?: string | null
+          featured_on_homepage?: boolean | null
+          festivals_exhibitions?: Json | null
+          has_incentive_law?: boolean | null
+          hero_image_url?: string | null
+          id?: string
+          image_url?: string | null
+          impacto_cultural?: string | null
+          impacto_social?: string | null
+          incentive_law_details?: string | null
+          is_hidden?: boolean | null
+          link_video?: string | null
+          location?: string | null
+          news?: Json | null
+          order_index?: number | null
+          presentation_document_url?: string | null
+          project_type?: string | null
+          publico_alvo?: string | null
+          responsavel_email?: string | null
+          responsavel_nome?: string | null
+          responsavel_telefone?: string | null
+          show_on_captacao?: boolean | null
+          show_on_portfolio?: boolean | null
+          stage?: string | null
+          stages?: string[] | null
+          status?: string | null
+          synopsis?: string | null
+          title: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          awards?: string[] | null
+          card_image_url?: string | null
+          categorias_tags?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          diferenciais?: string | null
+          featured_on_homepage?: boolean | null
+          festivals_exhibitions?: Json | null
+          has_incentive_law?: boolean | null
+          hero_image_url?: string | null
+          id?: string
+          image_url?: string | null
+          impacto_cultural?: string | null
+          impacto_social?: string | null
+          incentive_law_details?: string | null
+          is_hidden?: boolean | null
+          link_video?: string | null
+          location?: string | null
+          news?: Json | null
+          order_index?: number | null
+          presentation_document_url?: string | null
+          project_type?: string | null
+          publico_alvo?: string | null
+          responsavel_email?: string | null
+          responsavel_nome?: string | null
+          responsavel_telefone?: string | null
+          show_on_captacao?: boolean | null
+          show_on_portfolio?: boolean | null
+          stage?: string | null
+          stages?: string[] | null
+          status?: string | null
+          synopsis?: string | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      settings: {
+        Row: {
+          created_at: string | null
+          id: string
+          key: string
+          updated_at: string | null
+          value: Json | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          key: string
+          updated_at?: string | null
+          value?: Json | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          key?: string
+          updated_at?: string | null
+          value?: Json | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: string
+          user_id: string | null
+        }
+        Insert: {
+          id?: string
+          role?: string
+          user_id?: string | null
+        }
+        Update: {
+          id?: string
+          role?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
