@@ -136,7 +136,7 @@ export function Navbar({ showNav = true, currentPage, rightContent }: NavbarProp
           <img 
             src={portobelloLogo} 
             alt="Porto Bello" 
-            className="h-12 sm:h-14 md:h-16 w-auto group-hover:scale-105 transition-transform duration-300 object-contain pointer-events-none"
+            className="h-6 sm:h-7 md:h-8 w-auto group-hover:scale-105 transition-transform duration-300 object-contain pointer-events-none"
           />
         </Link>
 
