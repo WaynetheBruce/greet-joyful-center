@@ -132,11 +132,11 @@ export function Navbar({ showNav = true, currentPage, rightContent }: NavbarProp
     <header className="border-b border-border/50 bg-card/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-soft">
       <div className="container mx-auto px-2 sm:px-4 h-20 flex items-center justify-between relative">
         {/* Logo - Homepage - clipped to navbar bounds */}
-        <Link to="/" className="flex items-center group -ml-6 sm:-ml-12 h-20 overflow-hidden">
+        <Link to="/" className="flex items-center group h-20 overflow-hidden">
           <img 
             src={portobelloLogo} 
             alt="Porto Bello" 
-            className="h-32 sm:h-44 md:h-52 w-auto group-hover:scale-105 transition-transform duration-300 object-contain object-left pointer-events-none"
+            className="h-12 sm:h-14 md:h-16 w-auto group-hover:scale-105 transition-transform duration-300 object-contain pointer-events-none"
           />
         </Link>
 
